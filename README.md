@@ -9,10 +9,6 @@ Access records, view marks, and communicate effortlessly.
 </h3>
 
 <p>
-  <a href="https://youtu.be/ol650KwQkgY?si=rKcboqSv3n-e4UbC">Youtube Video</a>
-</p>
-
-<p>
   <a href="https://www.linkedin.com/in/yogndrr/">LinkedIn</a>
 </p>
 
@@ -242,12 +238,6 @@ For local development in `frontend/.env`:
 REACT_APP_BASE_URL=http://localhost:5001
 ```
 
-For Vercel production:
-
-```env
-REACT_APP_API_URL=https://school-management-system-5vc5.onrender.com
-```
-
 `REACT_APP_BASE_URL` is used in development. `REACT_APP_API_URL` is used in production. Do not include a trailing slash in either value.
 
 Redeploy the frontend after changing production environment variables in Vercel.
@@ -255,5 +245,3 @@ Redeploy the frontend after changing production environment variables in Vercel.
 # Notes
 
 The legacy-version branch remains available for anyone who needs the original two-year-old tutorial code. The main branch will continue to evolve as I rebuild the project's architecture using the practices I use today. The community-version branch is available for contributions without affecting the core redesign.
-
-# School-Management-System
