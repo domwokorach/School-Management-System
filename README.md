@@ -175,69 +175,85 @@ There are multiple ways to deploy the project. Use any combination depending on 
 Render works well for Express-based APIs and requires almost no infrastructure setup.
 
 1. Push your code to GitHub.
-2. Create a new Web Service in Render.
-3. Select your backend folder as the root.
-4. Set the build command to:
+1. Create a new Web Service in Render.
+1. Select your backend folder as the root.
+1. Set the build command to:
 
-```
+```bash
 npm install
 ```
 
-5. Set the start command to:
+1. Set the start command to:
 
-```
+```bash
 npm start
 ```
 
-6. Add the required environment variables from your .env file (MONGO_URL and SECRET_KEY).
+1. Add these environment variables in Render:
+
+```env
+MONGO_URL=your_mongodb_connection_string
+SECRET_KEY=your_secret_key
+PORT=10000
+```
+
+1. In MongoDB Atlas, allow Render to access your cluster. For a quick setup, add `0.0.0.0/0` to Atlas Network Access.
+
+1. Deploy the service and copy the generated Render URL, for example:
+
+```text
+https://school-management-system-5vc5.onrender.com
+```
 
 Render automatically redeploys on every push.
 
 ## Deploying the frontend
 
-### Netlify
-
-Netlify builds and serves the React application.
-
-Steps:
-
-1. Push your frontend folder to GitHub.
-2. Create a new Netlify project.
-3. Set the build command:
-
-```
-npm run build
-```
-
-4. Set the publish directory:
-
-```
-build
-```
-
-5. Add an environment variable if needed for the API endpoint:
-
-```
-REACT_APP_BASE_URL=https://your-backend-url
-```
-
-Netlify auto-builds on every push.
-
 ### Vercel
 
-Vercel deploys React-based frontends easily. Same build command. Same publish directory.
+Vercel deploys the React frontend well for this repo.
+
+1. Push your code to GitHub.
+1. In Vercel, create a new project from this repository.
+1. Set the root directory to `frontend`.
+1. Use these build settings:
+
+```text
+Install Command: npm install
+Build Command: npm run build
+Output Directory: build
+```
+
+1. Add this environment variable in Vercel for Production:
+
+```env
+REACT_APP_API_URL=https://school-management-system-5vc5.onrender.com
+```
+
+1. Deploy the frontend.
 
 ## Connecting frontend and backend
 
-After deploying both sides, set the frontend environment variable to point to your backend URL. For example:
+The frontend now uses separate environment variables for local development and production.
 
-```
-REACT_APP_BASE_URL=https://your-backend.onrender.com
+For local development in `frontend/.env`:
+
+```env
+REACT_APP_BASE_URL=http://localhost:5001
 ```
 
-Rebuild the frontend when deploying to Netlify or Vercel.
+For Vercel production:
+
+```env
+REACT_APP_API_URL=https://school-management-system-5vc5.onrender.com
+```
+
+`REACT_APP_BASE_URL` is used in development. `REACT_APP_API_URL` is used in production. Do not include a trailing slash in either value.
+
+Redeploy the frontend after changing production environment variables in Vercel.
 
 # Notes
 
 The legacy-version branch remains available for anyone who needs the original two-year-old tutorial code. The main branch will continue to evolve as I rebuild the project's architecture using the practices I use today. The community-version branch is available for contributions without affecting the core redesign.
+
 # School-Management-System
