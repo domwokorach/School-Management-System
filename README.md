@@ -99,7 +99,7 @@ npm install
 Create a .env file in the frontend folder and add:
 
 ```
-REACT_APP_BASE_URL=http://localhost:5000
+REACT_APP_BASE_URL=http://localhost:5001
 ```
 
 If a .env file already exists and the line is commented out, remove the comment.
@@ -108,7 +108,9 @@ If a .env file already exists and the line is commented out, remove the comment.
 npm start
 ```
 
-Frontend runs at localhost:3000. Backend runs at localhost:5000.
+Frontend runs at localhost:3000. Backend runs at localhost:5001.
+
+On some macOS setups, Control Center already uses port 5000. If the backend fails with `EADDRINUSE`, set `PORT=5001` in `backend/.env` and keep the frontend base URL pointed at the same port.
 
 # MONGO_URL instructions
 

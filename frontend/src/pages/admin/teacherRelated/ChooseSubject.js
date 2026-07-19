@@ -11,6 +11,7 @@ const ChooseSubject = ({ situation }) => {
     const params = useParams();
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const { id, classID: routeClassID, teacherID: routeTeacherID } = params;
 
     const [classID, setClassID] = useState("");
     const [teacherID, setTeacherID] = useState("");
@@ -20,17 +21,15 @@ const ChooseSubject = ({ situation }) => {
 
     useEffect(() => {
         if (situation === "Norm") {
-            setClassID(params.id);
-            const classID = params.id
-            dispatch(getTeacherFreeClassSubjects(classID));
+            setClassID(id);
+            dispatch(getTeacherFreeClassSubjects(id));
         }
         else if (situation === "Teacher") {
-            const { classID, teacherID } = params
-            setClassID(classID);
-            setTeacherID(teacherID);
-            dispatch(getTeacherFreeClassSubjects(classID));
+            setClassID(routeClassID);
+            setTeacherID(routeTeacherID);
+            dispatch(getTeacherFreeClassSubjects(routeClassID));
         }
-    }, [situation]);
+    }, [dispatch, id, routeClassID, routeTeacherID, situation]);
 
     if (loading) {
         return <div>Loading...</div>;
